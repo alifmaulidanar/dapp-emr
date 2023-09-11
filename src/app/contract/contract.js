@@ -1,10 +1,12 @@
 import { ethers } from "ethers";
 import MEDICAL_RECORDS_ABI from "./MedicalRecords.abi.json";
+const DotEnv = require("dotenv");
+DotEnv.config({ path: ".env" });
+const { CONTRACT_ADDRESS_KEY = "", RPC_URL_KEY = "" } = process.env;
 
 export { MEDICAL_RECORDS_ABI };
-export const MEDICAL_RECORDS_CONTRACT_ADDRESS =
-  "0x66E167fDd23614b58A4459C1C875C6705f550ED6";
-export const ETH_SEPOLIA_RPC_URL = "https://rpc.sepolia.org";
+export const MEDICAL_RECORDS_CONTRACT_ADDRESS = [CONTRACT_ADDRESS_KEY];
+export const ETH_SEPOLIA_RPC_URL = [RPC_URL_KEY];
 
 export function getContract(provider) {
   return new ethers.Contract(
