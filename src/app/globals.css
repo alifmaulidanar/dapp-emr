@@ -25,3 +25,11 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+* {
+  outline: 1px solid red;
+}
+
+table tbody tr .table-head {
+  text-align: left;
+}
