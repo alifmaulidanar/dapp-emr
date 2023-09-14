@@ -83,7 +83,7 @@ function RecordList({
   recordDoctorName,
 }) {
   return (
-    <Link href="#">
+    <Link href="/patient/0x66E167fDd23614b58A4459C1C875C6705f550ED6/record">
       <div className="w-full p-6 bg-white border border-gray-200 rounded-lg shadow">
         <div className="grid grid-cols-2 items-center">
           <h5 className="mb-2 text-2xl font-bold text-gray-900">
@@ -103,7 +103,7 @@ function RecordList({
 }
 
 // Komponen untuk informasi pasien
-function PatientInfo({
+function PatientList({
   patientName,
   patientImage,
   patientAddress,
@@ -158,4 +158,4 @@ function PatientInfo({
   );
 }
 
-export { DashboardTop, RecordList, PatientInfo };
+export { DashboardTop, RecordList, PatientList };

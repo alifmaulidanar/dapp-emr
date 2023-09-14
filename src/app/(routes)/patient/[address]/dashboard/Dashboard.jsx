@@ -2,7 +2,7 @@ import "./../../../../globals.css";
 import {
   DashboardTop,
   RecordList,
-  PatientInfo,
+  PatientList,
 } from "./../components/_dashboard";
 
 function Dashboard() {
@@ -13,7 +13,7 @@ function Dashboard() {
     recordDoctorName: "Dokter Suryono",
   };
 
-  const patientInfoProps = [
+  const patientListProps = [
     {
       patientName: "Alif Maulidanar",
       patientImage: "/Alif.jpg",
@@ -45,8 +45,8 @@ function Dashboard() {
           <div className="w-full py-4 px-8 bg-white border border-gray-200 rounded-lg shadow">
             <div className="flow-root">
               <ul role="list" className="divide-y divide-gray-200">
-                {patientInfoProps.map((patient, index) => (
-                  <PatientInfo key={index} {...patient} />
+                {patientListProps.map((patient, index) => (
+                  <PatientList key={index} {...patient} />
                 ))}
               </ul>
             </div>
