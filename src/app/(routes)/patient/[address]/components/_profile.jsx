@@ -1,7 +1,9 @@
-import Link from "next/link";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 
-function PatientIdentifier(patientName, patientImage, patientAddress) {
+function PatientIdentifier({ patientName, patientImage, patientAddress }) {
   return (
     <div className="flex flex-col items-center p-8">
       <Image
@@ -21,39 +23,56 @@ function PatientIdentifier(patientName, patientImage, patientAddress) {
   );
 }
 
-function PatientData(props) {
-  const [
-    patientName,
-    patientIdNumber,
-    patientBirthLocation,
-    patientBirthDate,
-    patientGender,
-    patientBloodType,
-    patientMaritalStatus,
-    patientReligion,
-    patientJob,
-    patientCitizenship,
-    patientPhone,
-    patientEmail,
-    patientHomeAddress,
-    patientProvince,
-    patientCity,
-    patientSubdistrict,
-    patientVillage,
-    patientPostalCode,
-    relativesName,
-    relativesIdNumber,
-    relativesGender,
-    relativesBirthDate,
-    relativesPhone,
-    relativesRelation,
-    relativesHomeAddress,
-    relativesProvince,
-    relativesCity,
-    relativesSubdistrict,
-    relativesVillage,
-    relativesPostalCode,
-  ] = props;
+function PatientData({
+  patientName,
+  patientIdNumber,
+  patientBirthLocation,
+  patientBirthDate,
+  patientGender,
+  patientBloodType,
+  patientMaritalStatus,
+  patientReligion,
+  patientJob,
+  patientCitizenship,
+  patientPhone,
+  patientEmail,
+  patientHomeAddress,
+  patientProvince,
+  patientCity,
+  patientSubdistrict,
+  patientVillage,
+  patientPostalCode,
+  relativesName,
+  relativesIdNumber,
+  relativesGender,
+  relativesBirthDate,
+  relativesPhone,
+  relativesRelation,
+  relativesHomeAddress,
+  relativesProvince,
+  relativesCity,
+  relativesSubdistrict,
+  relativesVillage,
+  relativesPostalCode,
+}) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleCancelClick = () => {
+    setIsEditing(false);
+  };
+
+  const handleSaveClick = () => {
+    setIsEditing(false);
+  };
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
 
   return (
     <form className="col-span-2 p-8">
@@ -73,9 +92,9 @@ function PatientData(props) {
             type="text"
             id="nama"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder={`${patientName}`}
+            defaultValue={patientName}
             required
-            disable
+            disabled={!isEditing}
           />
         </div>
         <div className="mb-6">
@@ -89,9 +108,9 @@ function PatientData(props) {
             type="text"
             id="nomor_identitas"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder={`${patientIdNumber}`}
+            defaultValue={patientIdNumber}
             required
-            disabled
+            disabled={!isEditing}
           />
         </div>
         <div className="mb-6">
@@ -105,9 +124,9 @@ function PatientData(props) {
             type="text"
             id="tempat_lahir"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder={`${patientBirthLocation}`}
+            defaultValue={patientBirthLocation}
             required
-            disabled
+            disabled={!isEditing}
           />
         </div>
         <div className="mb-6">
@@ -132,12 +151,12 @@ function PatientData(props) {
             <input
               datepicker
               datepicker-format="dd/mm/yyyy"
-              datepicker-autohide
+              datepicker-autohide="true"
               type="text"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
-              placeholder={`${patientBirthDate}`}
+              defaultValue={patientBirthDate}
               required
-              disabled
+              disabled={!isEditing}
             />
           </div>
         </div>
@@ -151,11 +170,13 @@ function PatientData(props) {
           <select
             id="jenis_kelamin"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            disabled
+            defaultValue={patientGender}
+            disabled={!isEditing}
+            required
           >
-            <option selected>{patientGender}</option>
-            <option value="laki">Laki-laki</option>
-            <option value="perempuan">Perempuan</option>
+            <option>Pilih Jenis Kelamin</option>
+            <option value="Pria">Pria</option>
+            <option value="Wanita">Wanita</option>
           </select>
         </div>
         <div className="mb-6">
@@ -168,13 +189,15 @@ function PatientData(props) {
           <select
             id="golongan_darah"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            disabled
+            defaultValue={patientBloodType}
+            disabled={!isEditing}
+            required
           >
-            <option selected>{patientBloodType}</option>
-            <option value="darah_a">A</option>
-            <option value="darah_b">B</option>
-            <option value="darah_o">O</option>
-            <option value="darah_ab">AB</option>
+            <option>Pilih Golongan Darah</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="O">O</option>
+            <option value="AB">AB</option>
           </select>
         </div>
         <div className="mb-6">
@@ -187,11 +210,13 @@ function PatientData(props) {
           <select
             id="status_perkawinan"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            disabled
+            defaultValue={patientMaritalStatus}
+            disabled={!isEditing}
+            required
           >
-            <option selected>{patientMaritalStatus}</option>
-            <option value="menikah">Menikah</option>
-            <option value="!menikah">Tidak/Belum Menikah</option>
+            <option>Pilih Status Perkawinan</option>
+            <option value="Menikah">Menikah</option>
+            <option value="Tidak/Belum Menikah">Tidak/Belum Menikah</option>
           </select>
         </div>
         <div className="mb-6">
@@ -204,15 +229,17 @@ function PatientData(props) {
           <select
             id="agama"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            disabled
+            defaultValue={patientReligion}
+            required
+            disabled={!isEditing}
           >
-            <option selected>{patientReligion}</option>
-            <option value="budha">Budha</option>
-            <option value="hindu">Hindu</option>
-            <option value="islam">Islam</option>
-            <option value="katolik">Kristen Katolik</option>
-            <option value="protestan">Kristen Protestan</option>
-            <option value="konghucu">Konghuchu</option>
+            <option>Pilih Agama</option>
+            <option value="Budha">Budha</option>
+            <option value="Hindu">Hindu</option>
+            <option value="Islam">Islam</option>
+            <option value="Katolik">Kristen Katolik</option>
+            <option value="Protestan">Kristen Protestan</option>
+            <option value="Konghucu">Konghuchu</option>
           </select>
         </div>
         <div className="mb-6">
@@ -226,9 +253,9 @@ function PatientData(props) {
             type="text"
             id="pekerjaan"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder={`${patientJob}`}
+            defaultValue={`${patientJob}`}
             required
-            disabled
+            disabled={!isEditing}
           />
         </div>
         <div className="mb-6">
@@ -242,9 +269,9 @@ function PatientData(props) {
             type="text"
             id="kewarganegaraan"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder={`${patientCitizenship}`}
+            defaultValue={`${patientCitizenship}`}
             required
-            disabled
+            disabled={!isEditing}
           />
         </div>
         <div className="mb-6">
@@ -258,9 +285,9 @@ function PatientData(props) {
             type="tel"
             id="nomor_telepon"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder={`${patientPhone}`}
+            defaultValue={patientPhone}
             required
-            disabled
+            disabled={!isEditing}
           />
         </div>
         <div className="mb-6">
@@ -274,9 +301,9 @@ function PatientData(props) {
             type="email"
             id="email"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder={`${patientEmail}`}
+            defaultValue={patientEmail}
             required
-            disabled
+            disabled={!isEditing}
           />
         </div>
         {/* TEMPAT TINGGAL */}
@@ -295,8 +322,8 @@ function PatientData(props) {
             id="alamat"
             rows={4}
             className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-            placeholder={`${patientHomeAddress}`}
-            defaultValue={""}
+            defaultValue={patientHomeAddress}
+            disabled={!isEditing}
           />
         </div>
         <div className="mb-6">
@@ -309,63 +336,65 @@ function PatientData(props) {
           <select
             id="provinsi"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            disabled
+            defaultValue={patientProvince}
+            disabled={!isEditing}
           >
-            <option selected>{patientProvince}</option>
-            <option value="aceh">Aceh</option>
-            <option value="bali">Bali</option>
-            <option value="banten">Banten</option>
+            <option>Pilih Provinsi</option>
+            <option value="Aceh">Aceh</option>
+            <option value="Bali">Bali</option>
+            <option value="Banten">Banten</option>
             <option value="Bengkulu">Bengkulu</option>
-            <option value="jakarta">DKI Jakarta</option>
-            <option value="jogjakarta">Daerah Istimewa Yogyakarta</option>
-            <option value="gorontalo">Gorontalo</option>
-            <option value="jambi">Jambi</option>
-            <option value="jawa_barat">Jawa Barat</option>
-            <option value="jawa_tengah">Jawa Tengah</option>
-            <option value="jawa_timur">Jawa Timur</option>
-            <option value="kalimantan_barat">Kalimantan Barat</option>
-            <option value="kalimantan_selatan">Kalimantan Selatan</option>
-            <option value="kalimantan_tengah">Kalimantan Tengah</option>
-            <option value="kalimantan_timur">Kalimantan Timur</option>
-            <option value="kalimantan_utara">Kalimantan Utara</option>
-            <option value="kepulauan_bangka_belitung">
+            <option value="DKI Jakarta">DKI Jakarta</option>
+            <option value="Daerah Istimewa Yogyakarta">
+              Daerah Istimewa Yogyakarta
+            </option>
+            <option value="Gorontalo">Gorontalo</option>
+            <option value="Jambi">Jambi</option>
+            <option value="Jawa Barat">Jawa Barat</option>
+            <option value="Jawa Tengah">Jawa Tengah</option>
+            <option value="Jawa Timur">Jawa Timur</option>
+            <option value="Kalimantan Barat">Kalimantan Barat</option>
+            <option value="Kalimantan Selatan">Kalimantan Selatan</option>
+            <option value="Kalimantan Tengah">Kalimantan Tengah</option>
+            <option value="Kalimantan Timur">Kalimantan Timur</option>
+            <option value="Kalimantan Utara">Kalimantan Utara</option>
+            <option value="Kepulauan Bangka Belitung">
               Kepulauan Bangka Belitung
             </option>
-            <option value="kepulauan_riau">Kepulauan Riau</option>
-            <option value="lampung">Lampung</option>
-            <option value="maluku">Maluku</option>
-            <option value="maluku">Maluku Utara</option>
-            <option value="nusa_tenggara_barat">NUsa Tenggara Barat</option>
-            <option value="busa_tenggara_timur">Nusa Tenggara Timur</option>
-            <option value="papu">Papua</option>
-            <option value="papua_barat">Papua Barat</option>
-            <option value="riau">Riau</option>
-            <option value="sulawesi_barat">Sulawesi Barat</option>
-            <option value="sulawesi_selatan">Sulawesi Selatan</option>
-            <option value="sulawesi_tengah">Sulawesi Tengah</option>
-            <option value="sulawesi_tenggara">Sulawesi Tenggara</option>
-            <option value="sulawesi_utara">Sulawesi Utara</option>
-            <option value="sumatera_barat">Sumatera Barat</option>
+            <option value="Kepulauan Riau">Kepulauan Riau</option>
+            <option value="Lampung">Lampung</option>
+            <option value="Maluku">Maluku</option>
+            <option value="Maluku Utara">Maluku Utara</option>
+            <option value="Nusa Tenggara Barat">Nusa Tenggara Barat</option>
+            <option value="Nusa Tenggara Timur">Nusa Tenggara Timur</option>
+            <option value="Papua">Papua</option>
+            <option value="Papua Barat">Papua Barat</option>
+            <option value="Riau">Riau</option>
+            <option value="Sulawesi Barat">Sulawesi Barat</option>
+            <option value="Sulawesi Selatan">Sulawesi Selatan</option>
+            <option value="Sulawesi Tengah">Sulawesi Tengah</option>
+            <option value="Sulawesi Tenggara">Sulawesi Tenggara</option>
+            <option value="Sulawesi Utara">Sulawesi Utara</option>
+            <option value="Sumatera Barat">Sumatera Barat</option>
             <option value="sumatera_selatan">Sumatera Selatan</option>
-            <option value="sumatera_utara">Sumatera Utara</option>
+            <option value="Sumatera Utara">Sumatera Utara</option>
           </select>
         </div>
         <div className="mb-6">
           <label
-            htmlFor="kota"
+            htmlFor="kecamatan"
             className="block mb-2 text-sm font-medium text-gray-900"
           >
             Kota/Kabupaten
           </label>
-          <select
-            id="okta"
+          <input
+            type="text"
+            id="kecamatan"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            disabled
-          >
-            <option selected>{patientCity}</option>
-            <option value="jakarta_timur">Jakarta Timur</option>
-            <option value="bekasi">Bekasi</option>
-          </select>
+            defaultValue={patientCity}
+            required
+            disabled={!isEditing}
+          />
         </div>
         <div className="mb-6">
           <label
@@ -378,9 +407,9 @@ function PatientData(props) {
             type="text"
             id="kecamatan"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder={`${patientSubdistrict}`}
+            defaultValue={patientSubdistrict}
             required
-            disabled
+            disabled={!isEditing}
           />
         </div>
         <div className="mb-6">
@@ -394,9 +423,9 @@ function PatientData(props) {
             type="text"
             id="kelurahan"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder={`${patientVillage}`}
+            defaultValue={patientVillage}
             required
-            disabled
+            disabled={!isEditing}
           />
         </div>
         <div className="mb-6">
@@ -410,9 +439,9 @@ function PatientData(props) {
             type="text"
             id="pos"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder={`${patientPostalCode}`}
+            defaultValue={patientPostalCode}
             required
-            disabled
+            disabled={!isEditing}
           />
         </div>
         {/* DATA PENANGGUNG JAWAB */}
@@ -431,9 +460,9 @@ function PatientData(props) {
             type="text"
             id="nama_kerabat"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder={`${relativesName}`}
+            defaultValue={relativesName}
             required
-            disable
+            disabled={!isEditing}
           />
         </div>
         <div className="mb-6">
@@ -447,9 +476,9 @@ function PatientData(props) {
             type="text"
             id="nomor_identitas_kerabat"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder={`${relativesIdNumber}`}
+            defaultValue={relativesIdNumber}
             required
-            disabled
+            disabled={!isEditing}
           />
         </div>
         <div className="mb-6">
@@ -462,11 +491,13 @@ function PatientData(props) {
           <select
             id="jenis_kelamin_kerabat"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            disabled
+            defaultValue={relativesGender}
+            disabled={!isEditing}
+            required
           >
-            <option selected>{relativesGender}</option>
-            <option value="laki">Laki-laki</option>
-            <option value="perempuan">Perempuan</option>
+            <option>Pilih Jenis Kelamin</option>
+            <option value="Pria">Pria</option>
+            <option value="Wanita">Wanita</option>
           </select>
         </div>
         <div className="mb-6">
@@ -492,9 +523,9 @@ function PatientData(props) {
               datepicker
               type="text"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
-              placeholder={`${relativesBirthDate}`}
+              defaultValue={relativesBirthDate}
               required
-              disabled
+              disabled={!isEditing}
             />
           </div>
         </div>
@@ -509,9 +540,9 @@ function PatientData(props) {
             type="tel"
             id="nomor_telepon_kerabat"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder={`${relativesPhone}`}
+            defaultValue={relativesPhone}
             required
-            disabled
+            disabled={!isEditing}
           />
         </div>
         <div className="mb-6">
@@ -525,18 +556,19 @@ function PatientData(props) {
             type="text"
             id="kerabat"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder={`${relativesRelation}`}
+            defaultValue={relativesRelation}
             required
-            disabled
+            disabled={!isEditing}
           />
         </div>
         <div className="flex items-center mb-4">
           <input
-            checked
+            checked={isChecked}
             id="checkbox-alamat"
             type="checkbox"
             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
-            disabled
+            onChange={handleCheckboxChange}
+            disabled={!isEditing}
           />
           <label
             htmlFor="checkbox-2"
@@ -556,7 +588,8 @@ function PatientData(props) {
             id="alamat"
             rows={4}
             className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-            placeholder={`${relativesHomeAddress}`}
+            defaultValue={isChecked ? patientHomeAddress : relativesHomeAddress}
+            disabled={!isEditing}
           />
         </div>
         <div className="mb-6">
@@ -569,63 +602,65 @@ function PatientData(props) {
           <select
             id="provinsi"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            disabled
+            defaultValue={isChecked ? patientProvince : relativesProvince}
+            disabled={!isEditing}
           >
-            <option selected>{relativesProvince}</option>
-            <option value="aceh">Aceh</option>
-            <option value="bali">Bali</option>
-            <option value="banten">Banten</option>
+            <option>Pilih Provinsi</option>
+            <option value="Aceh">Aceh</option>
+            <option value="Bali">Bali</option>
+            <option value="Banten">Banten</option>
             <option value="Bengkulu">Bengkulu</option>
-            <option value="jakarta">DKI Jakarta</option>
-            <option value="jogjakarta">Daerah Istimewa Yogyakarta</option>
-            <option value="gorontalo">Gorontalo</option>
-            <option value="jambi">Jambi</option>
-            <option value="jawa_barat">Jawa Barat</option>
-            <option value="jawa_tengah">Jawa Tengah</option>
-            <option value="jawa_timur">Jawa Timur</option>
-            <option value="kalimantan_barat">Kalimantan Barat</option>
-            <option value="kalimantan_selatan">Kalimantan Selatan</option>
-            <option value="kalimantan_tengah">Kalimantan Tengah</option>
-            <option value="kalimantan_timur">Kalimantan Timur</option>
-            <option value="kalimantan_utara">Kalimantan Utara</option>
-            <option value="kepulauan_bangka_belitung">
+            <option value="DKI Jakarta">DKI Jakarta</option>
+            <option value="Daerah Istimewa Yogyakarta">
+              Daerah Istimewa Yogyakarta
+            </option>
+            <option value="Gorontalo">Gorontalo</option>
+            <option value="Jambi">Jambi</option>
+            <option value="Jawa Barat">Jawa Barat</option>
+            <option value="Jawa Tengah">Jawa Tengah</option>
+            <option value="Jawa Timur">Jawa Timur</option>
+            <option value="Kalimantan Barat">Kalimantan Barat</option>
+            <option value="Kalimantan Selatan">Kalimantan Selatan</option>
+            <option value="Kalimantan Tengah">Kalimantan Tengah</option>
+            <option value="Kalimantan Timur">Kalimantan Timur</option>
+            <option value="Kalimantan Utara">Kalimantan Utara</option>
+            <option value="Kepulauan Bangka Belitung">
               Kepulauan Bangka Belitung
             </option>
-            <option value="kepulauan_riau">Kepulauan Riau</option>
-            <option value="lampung">Lampung</option>
-            <option value="maluku">Maluku</option>
-            <option value="maluku">Maluku Utara</option>
-            <option value="nusa_tenggara_barat">NUsa Tenggara Barat</option>
-            <option value="busa_tenggara_timur">Nusa Tenggara Timur</option>
-            <option value="papu">Papua</option>
-            <option value="papua_barat">Papua Barat</option>
-            <option value="riau">Riau</option>
-            <option value="sulawesi_barat">Sulawesi Barat</option>
-            <option value="sulawesi_selatan">Sulawesi Selatan</option>
-            <option value="sulawesi_tengah">Sulawesi Tengah</option>
-            <option value="sulawesi_tenggara">Sulawesi Tenggara</option>
-            <option value="sulawesi_utara">Sulawesi Utara</option>
-            <option value="sumatera_barat">Sumatera Barat</option>
+            <option value="Kepulauan Riau">Kepulauan Riau</option>
+            <option value="Lampung">Lampung</option>
+            <option value="Maluku">Maluku</option>
+            <option value="Maluku Utara">Maluku Utara</option>
+            <option value="Nusa Tenggara Barat">Nusa Tenggara Barat</option>
+            <option value="Nusa Tenggara Timur">Nusa Tenggara Timur</option>
+            <option value="Papua">Papua</option>
+            <option value="Papua Barat">Papua Barat</option>
+            <option value="Riau">Riau</option>
+            <option value="Sulawesi Barat">Sulawesi Barat</option>
+            <option value="Sulawesi Selatan">Sulawesi Selatan</option>
+            <option value="Sulawesi Tengah">Sulawesi Tengah</option>
+            <option value="Sulawesi Tenggara">Sulawesi Tenggara</option>
+            <option value="Sulawesi Utara">Sulawesi Utara</option>
+            <option value="Sumatera Barat">Sumatera Barat</option>
             <option value="sumatera_selatan">Sumatera Selatan</option>
-            <option value="sumatera_utara">Sumatera Utara</option>
+            <option value="Sumatera Utara">Sumatera Utara</option>
           </select>
         </div>
         <div className="mb-6">
           <label
-            htmlFor="kota"
+            htmlFor="kecamatan"
             className="block mb-2 text-sm font-medium text-gray-900"
           >
             Kota/Kabupaten
           </label>
-          <select
-            id="okta"
+          <input
+            type="text"
+            id="kecamatan"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            disabled
-          >
-            <option selected>{relativesCity}</option>
-            <option value="jakarta_timur">Jakarta Timur</option>
-            <option value="bekasi">Bekasi</option>
-          </select>
+            defaultValue={isChecked ? patientCity : relativesCity}
+            required
+            disabled={!isEditing}
+          />
         </div>
         <div className="mb-6">
           <label
@@ -638,9 +673,9 @@ function PatientData(props) {
             type="text"
             id="kecamatan"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder={`${relativesSubdistrict}`}
+            defaultValue={isChecked ? patientSubdistrict : relativesSubdistrict}
             required
-            disabled
+            disabled={!isEditing}
           />
         </div>
         <div className="mb-6">
@@ -654,9 +689,9 @@ function PatientData(props) {
             type="text"
             id="kelurahan"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder={`${relativesVillage}`}
+            defaultValue={isChecked ? patientVillage : relativesVillage}
             required
-            disabled
+            disabled={!isEditing}
           />
         </div>
         <div className="mb-6">
@@ -670,38 +705,44 @@ function PatientData(props) {
             type="text"
             id="pos"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder={`${relativesPostalCode}`}
+            defaultValue={isChecked ? patientPostalCode : relativesPostalCode}
             required
-            disabled
+            disabled={!isEditing}
           />
         </div>
       </div>
 
       {/* UBAH DATA */}
-      <div className="col-span-2 text-center mt-8">
-        <button
-          type="submit"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-        >
-          Ubah Data
-        </button>
-      </div>
-
-      {/* SIMPAN ATAU BATAL */}
-      <div className="hidden grid grid-cols-2 gap-x-4 text-center mt-8">
-        <button
-          type="submit"
-          className="text-white bg-red-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-fit sm:w-auto px-5 py-2.5 text-center"
-        >
-          Batal
-        </button>
-        <button
-          type="submit"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-fit sm:w-auto px-5 py-2.5 text-center"
-        >
-          Simpan Perubahan
-        </button>
-      </div>
+      {isEditing ? (
+        // Tampilan tombol saat sedang dalam mode pengeditan
+        <div className="grid grid-cols-2 gap-x-4 text-center mt-8">
+          <button
+            type="button"
+            className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-fit sm:w-auto px-5 py-2.5 text-center"
+            onClick={handleCancelClick}
+          >
+            Batal
+          </button>
+          <button
+            type="button"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-fit sm:w-auto px-5 py-2.5 text-center"
+            onClick={handleSaveClick}
+          >
+            Simpan Perubahan
+          </button>
+        </div>
+      ) : (
+        // Tampilan tombol saat tidak dalam mode pengeditan
+        <div className="col-span-2 text-center mt-8">
+          <button
+            type="button"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+            onClick={handleEditClick}
+          >
+            Ubah Data
+          </button>
+        </div>
+      )}
     </form>
   );
 }
