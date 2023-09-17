@@ -18,7 +18,7 @@ function NavItem({ text, linkToPage, color }) {
   );
 }
 
-function Navbar({ title, navItems }) {
+function Navbar({ title, buttons, navItems }) {
   return (
     <nav className="bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -33,16 +33,17 @@ function Navbar({ title, navItems }) {
           </span>
         </Link>
         <div className="flex md:order-2 gap-x-4">
-          {/* {buttons.map((button, index) => (
+          {/* INFORMASI ACCOUNT BUTTON */}
+          {buttons.map((button, index) => (
             <Link key={index} href={button.href}>
               <button type="button" className={button.className}>
                 {button.text}
               </button>
             </Link>
-          ))} */}
+          ))}
 
           {/* METAMASK BUTTON */}
-          <MetaConnect />
+          {/* <MetaConnect /> */}
 
           {/* <button
             type="button"

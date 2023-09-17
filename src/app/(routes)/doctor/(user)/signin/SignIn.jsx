@@ -1,7 +1,13 @@
+import { SignInForm } from "../../../components/Form";
+
 function SignIn() {
   return (
-    <div>
-      <h1 className="text-gray-900 mt-20">DOCTOR</h1>
+    <div className="grid grid-cols-4 justify-center items-center min-h-screen w-full min-w-screen mx-auto px-20 pt-12">
+      <SignInForm
+        role="Dokter"
+        resetLink="/doctor/reset-password"
+        signupLink="/doctor/signup"
+      />
     </div>
   );
 }

@@ -1,23 +1,25 @@
-function SignUpForm() {
+import Link from "next/link";
+
+function SignUpForm({ role }) {
   return (
-    <div className="w-90 h-fit">
+    <div className="w-90 h-fit grid col-start-2 col-span-2 pt-12 pb-8">
       <div className="h-fit px-12 py-8 bg-white border border-gray-200 rounded-lg shadow">
         <h1 className="text-2xl font-semibold text-gray-900 mb-8 text-center">
-          Pendaftaran Akun Pasien
+          Pendaftaran Akun {role}
         </h1>
-        <form className="grid grid-cols-2 gap-x-12">
+        <form className="grid grid-cols-1 gap-x-12">
           <div className="grid mb-6">
             <label
               htmlFor="name"
               className="block mb-2 text-sm font-medium text-gray-900"
             >
-              Nama Lengkap
+              Nama Pengguna
             </label>
             <input
               type="text"
               id="nama"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-              placeholder="Nama lengkap sesuai KTP"
+              placeholder="Nama Pengguna"
               required
             />
           </div>
@@ -26,13 +28,13 @@ function SignUpForm() {
               htmlFor="email"
               className="block mb-2 text-sm font-medium text-gray-900 "
             >
-              Alamat Email
+              Email
             </label>
             <input
               type="email"
               id="email"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              placeholder="contoh@gmail.com"
+              placeholder="Alamat Email"
               required
             />
           </div>
@@ -47,24 +49,9 @@ function SignUpForm() {
               type="tel"
               id="telepon"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-              placeholder="Contoh: 0888123456"
+              placeholder="Nomor Telepon"
               required=""
             />
-          </div>
-          <div className="grid mb-6">
-            <label
-              htmlFor="gender"
-              className="block mb-2 text-sm font-medium text-gray-900 "
-            >
-              Jenis Kelamin
-            </label>
-            <select
-              id="gender"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            >
-              <option>Laki-Laki</option>
-              <option>Perempuan</option>
-            </select>
           </div>
           <div className="grid mb-6">
             <label
@@ -96,7 +83,7 @@ function SignUpForm() {
               required
             />
           </div>
-          <div className="col-span-2 ml-auto">
+          <div className="mx-auto">
             <button
               type="submit"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center mt-4"
@@ -110,12 +97,12 @@ function SignUpForm() {
   );
 }
 
-function SignInForm() {
+function SignInForm({ role, resetLink, signupLink }) {
   return (
     <div className="col-start-2 col-span-2 h-fit">
       <div className="h-fit px-12 py-8 bg-white border border-gray-200 rounded-lg shadow">
         <h1 className="text-2xl font-semibold text-gray-900 mb-8 text-center">
-          Masuk sebagai Pasien
+          Masuk sebagai {role}
         </h1>
         <form>
           <div className="mb-6">
@@ -156,28 +143,32 @@ function SignInForm() {
               Masuk
             </button>
           </div>
-          <div className="flex mt-8 justify-evenly items-center text-center">
-            <div>
+        </form>
+        <div className="flex mt-8 justify-evenly items-center text-center">
+          <div>
+            <Link href={resetLink}>
               <button
                 type="submit"
                 className="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2"
               >
                 Lupa Password
               </button>
-            </div>
-            <div>
-              <p className="text-l text-gray-900">atau</p>
-            </div>
-            <div>
+            </Link>
+          </div>
+          <div>
+            <p className="text-l text-gray-900">atau</p>
+          </div>
+          <div>
+            <Link href={signupLink}>
               <button
                 type="submit"
                 className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2"
               >
                 Daftar Baru
               </button>
-            </div>
+            </Link>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
