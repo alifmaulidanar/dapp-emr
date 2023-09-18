@@ -1,9 +1,10 @@
-import "./../../../../globals.css";
-import { PatientIdentifier, PatientData } from "../components/_profile";
+import "./../../globals.css";
+import PatientData from "../../components/PatientData";
+import PatientIdentifier from "../../components/PatientIdentifier";
 
 export const dynamic = "force-dynamic";
 
-function Profile() {
+function PatientProfile() {
   const patientIdentifierProps = {
     patientName: "Alif Maulidanar",
     patientImage: "/Alif.jpg",
@@ -56,4 +57,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default PatientProfile;

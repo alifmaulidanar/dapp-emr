@@ -1,4 +1,4 @@
-import SignIn from "./SignIn";
+import SignIn from "../../../../pages/SignIn";
 
 export default async function SignInPage() {
   return (

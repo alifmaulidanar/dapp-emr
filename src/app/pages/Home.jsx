@@ -1,4 +1,4 @@
-import Jumbotron from "../components/_jumbotron";
+import Jumbotron from "../components/Jumbotron";
 
 function Home() {
   const jumbotronProps = {

@@ -1,18 +1,7 @@
 import "./../../../../globals.css";
-import {
-  DashboardTop,
-  RecordList,
-  PatientList,
-} from "../components/_dashboard";
+import { DashboardTop, PatientList } from "../components/_patientList";
 
 function Dashboard() {
-  const recordListProps = {
-    recordTitle: "Medical Checkup Rutin",
-    recordDate: "Selasa, 11 September 2023",
-    recordAddress: "0x66E167fDd23614b58A4459C1C875C6705f550ED6",
-    recordDoctorName: "Dokter Suryono",
-  };
-
   const patientListProps = [
     {
       patientName: "Alif Maulidanar",
@@ -37,11 +26,8 @@ function Dashboard() {
   return (
     <div>
       <DashboardTop />
-      <div className="grid grid-cols-5 justify-center min-h-fit max-h-fit w-full min-w-screen mx-auto px-14 pt-8 gap-x-8 gap-y-4">
-        <div className="col-span-3 w-full">
-          <RecordList {...recordListProps} />
-        </div>
-        <div className="col-span-2 w-full">
+      <div className="grid grid-cols-1 justify-center min-h-fit max-h-fit w-1/2 min-w-screen mx-auto px-14 pt-8 gap-x-8 gap-y-4">
+        <div className="w-full">
           <div className="w-full py-4 px-8 bg-white border border-gray-200 rounded-lg shadow">
             <div className="flow-root">
               <ul role="list" className="divide-y divide-gray-200">

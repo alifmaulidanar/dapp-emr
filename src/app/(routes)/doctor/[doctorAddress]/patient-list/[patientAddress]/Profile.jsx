@@ -1,12 +1,11 @@
 import "./../../../../../globals.css";
-import { PatientIdentifier, PatientData } from "./_profile";
+import { PatientIdentifier, PatientData } from "./components/_profile";
 
 function Profile() {
   const patientIdentifierProps = {
     patientName: "Alif Maulidanar",
     patientImage: "/Alif.jpg",
     patientAddress: "0x66E167fDd23614b58A4459C1C875C6705f550ED6",
-    // recordDoctorName: "Dokter Suryono",
   };
 
   const patientDataProps = {
