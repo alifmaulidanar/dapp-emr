@@ -2,7 +2,7 @@ import "./../../../../globals.css";
 import Navbar from "../../../../components/Navbar";
 
 export const metadata = {
-  title: "Profil Pasien",
+  title: "Profil Dokter",
   description: "EMR with Blockchain",
 };
 
@@ -10,7 +10,7 @@ export default function PatientProfileLayout({ children }) {
   const navItems = [
     {
       text: "Daftar Pasien",
-      linkToPage: "/doctor/123/dashboard",
+      linkToPage: "/doctor/123/patient-list",
       color: "gray",
     },
     {

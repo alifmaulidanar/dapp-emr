@@ -1,12 +1,12 @@
-import "./../../../../globals.css";
-import { DoctorIdentifier, DoctorData } from "../components/_profile";
+import "./../../globals.css";
+import DoctorData from "../../components/DoctorData";
+import DoctorIdentifier from "../../components/DoctorIdentifier";
 
-function Profile() {
+function DoctorProfile() {
   const doctorIdentifierProps = {
     doctorName: "Dr. Alif Maulidanar",
     doctorImage: "/Alif.jpg",
     doctorAddress: "0x66E167fDd23614b58A4459C1C875C6705f550ED6",
-    // recordDoctorName: "Dokter Suryono",
   };
 
   const doctorDataProps = {
@@ -42,4 +42,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default DoctorProfile;

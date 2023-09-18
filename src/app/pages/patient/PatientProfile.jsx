@@ -9,7 +9,6 @@ function PatientProfile() {
     patientName: "Alif Maulidanar",
     patientImage: "/Alif.jpg",
     patientAddress: "0x66E167fDd23614b58A4459C1C875C6705f550ED6",
-    // recordDoctorName: "Dokter Suryono",
   };
 
   const patientDataProps = {

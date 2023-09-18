@@ -1,9 +1,9 @@
-import Profile from "./Profile";
+import DoctorProfile from "../../../../pages/doctor/DoctorProfile";
 
-export default async function ProfilePage() {
+export default async function DoctorProfilePage() {
   return (
     <div className="w-full max-w-screen mx-auto min-h-screen h-content shadow-lg shadow-primary/40 bg-white">
-      <Profile />
+      <DoctorProfile />
     </div>
   );
 }

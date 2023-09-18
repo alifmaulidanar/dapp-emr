@@ -6,7 +6,7 @@ export default function PatientList({
   patientName,
   patientImage,
   patientAddress,
-  patientIsChosen,
+  patientIsChosen = false,
 }) {
   return (
     <li className="py-3 sm:py-4">

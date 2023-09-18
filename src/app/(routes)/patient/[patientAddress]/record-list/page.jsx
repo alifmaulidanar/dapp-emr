@@ -1,4 +1,4 @@
-import PatientRecordList from "../../../pages/patient/PatientRecordList";
+import PatientRecordList from "../../../../pages/patient/PatientRecordList";
 
 export default async function PatientRecordListPage() {
   return (

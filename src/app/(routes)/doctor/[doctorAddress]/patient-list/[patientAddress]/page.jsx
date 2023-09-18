@@ -1,6 +1,11 @@
-import Profile from "./Profile";
+import Profile from "../../../../../pages/doctor/PatientOverview";
 
 export const dynamic = "force-dynamic";
+
+export const metadata = {
+  title: "Data Pasien",
+  description: "EMR with Blockchain",
+};
 
 export default async function ProfilePage() {
   return (

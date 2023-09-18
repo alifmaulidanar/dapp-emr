@@ -1,29 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
-
-function PatientIdentifier({ patientName, patientImage, patientAddress }) {
-  return (
-    <div className="flex flex-col col-span-3 items-center p-8">
-      <Image
-        className="w-24 h-24 mb-3 rounded-full shadow-lg"
-        width={500}
-        height={500}
-        src={`${patientImage}`}
-        alt={`${patientName} image`}
-      />
-      <h5 className="text-xl font-medium text-gray-900 mb-1">{patientName}</h5>
-      <div>
-        <span className="bg-green-100 text-green-800 text-xs px-2.5 py-0.5 rounded text-center">
-          {patientAddress}
-        </span>
-      </div>
-    </div>
-  );
-}
-
-const PatientProfile = ({ data }) => {
+const PatientProfileOverview = ({ data }) => {
   return (
     <>
       {data.map(({ key, value1, value2 }) => (
@@ -38,7 +15,7 @@ const PatientProfile = ({ data }) => {
   );
 };
 
-function PatientData() {
+export default function PatientDataOverview() {
   const patientDataProps1 = [
     { key: "patientName", value1: "Nama Pasien", value2: "Alif Maulidanar" },
     {
@@ -163,7 +140,7 @@ function PatientData() {
           Data Pasien
           <hr className="h-px bg-gray-700 border-0"></hr>
         </div>
-        <PatientProfile data={patientDataProps1} />
+        <PatientProfileOverview data={patientDataProps1} />
         <div className="col-span-2 text-gray-900 text-lg mb-6"></div>
 
         {/* DATA KERABAT/PENANGGUNG JAWAB PASIEN */}
@@ -171,11 +148,9 @@ function PatientData() {
           Data Kerabat/Penanggung Jawab Pasien
           <hr className="h-px bg-gray-700 border-0"></hr>
         </div>
-        <PatientProfile data={patientDataProps2} />
+        <PatientProfileOverview data={patientDataProps2} />
         <div className="col-span-2 text-gray-900 text-lg mb-6"></div>
       </div>
     </div>
   );
 }
-
-export { PatientIdentifier, PatientData };

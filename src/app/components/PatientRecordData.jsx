@@ -1,5 +1,5 @@
 "use client";
-const PatientRecord = ({ data }) => {
+const PatientRecordLoop = ({ data }) => {
   return (
     <>
       {data.map(({ key, value1, value2 }) => (
@@ -14,7 +14,7 @@ const PatientRecord = ({ data }) => {
   );
 };
 
-function PatientData() {
+function PatientRecordDisplay() {
   const patientDataProps1 = [
     {
       key: "recordAddress",
@@ -161,26 +161,26 @@ function PatientData() {
         </div>
 
         {/* DATA REKAM MEDIS */}
-        <PatientRecord data={patientDataProps1} />
+        <PatientRecordLoop data={patientDataProps1} />
         <div className="col-span-2 text-gray-900 text-lg mb-6">
           <hr className="h-px bg-gray-700 border-0"></hr>
         </div>
-        <PatientRecord data={patientDataProps2} />
+        <PatientRecordLoop data={patientDataProps2} />
         <div className="col-span-2 text-gray-900 text-lg mb-6">
           <hr className="h-px bg-gray-700 border-0"></hr>
         </div>
-        <PatientRecord data={patientDataProps3} />
+        <PatientRecordLoop data={patientDataProps3} />
         <div className="col-span-2 text-gray-900 text-lg mb-6">
           <hr className="h-px bg-gray-700 border-0"></hr>
         </div>
-        <PatientRecord data={patientDataProps4} />
+        <PatientRecordLoop data={patientDataProps4} />
         <div className="col-span-2 text-gray-900 text-lg mb-6">
           <hr className="h-px bg-gray-700 border-0"></hr>
         </div>
-        <PatientRecord data={patientDataProps5} />
+        <PatientRecordLoop data={patientDataProps5} />
       </div>
     </div>
   );
 }
 
-export default PatientData;
+export default PatientRecordDisplay;

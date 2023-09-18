@@ -1,5 +1,5 @@
 import Link from "next/link";
-import MetaConnect from "./MetamaskButton";
+import MetaConnect from "./Buttons/MetamaskButton";
 
 function NavItem({ text, linkToPage, color }) {
   return (
