@@ -1,0 +1,67 @@
+{
+  "username": {},
+  "email": {},
+  "phone": {},
+  "password": {},
+  "patients": [
+    {
+      "data": {
+        "profile": {
+          "patientAddress": {},
+          "patientIdNumber": {},
+          "patientName": {},
+          "patientBirthLocation": {},
+          "patientBirthDate": {},
+          "patientGender": {},
+          "patientBloodType": {},
+          "patientAllergic": {},
+          "patientMaritalStatus": {},
+          "patientReligion": {},
+          "patientJob": {},
+          "patientCitizenship": {},
+          "patientPhone": {},
+          "patientEmail": {},
+          "patientHomeAddress": {},
+          "patientProvince": {},
+          "patientCity": {},
+          "patientSubdistrict": {},
+          "patientVillage": {},
+          "patientPostalCode": {},
+          "relativesName": {},
+          "relativesIdNumber": {},
+          "relativesGender": {},
+          "relativesBirthDate": {},
+          "relativesPhone": {},
+          "relativesRelation": {},
+          "relativesHomeAddress": {},
+          "relativesProvince": {},
+          "relativesCity": {},
+          "relativesSubdistrict": {},
+          "relativesVillage": {},
+          "relativesPostalCode": {}
+        },
+        "records": [
+          {
+            "recordAddress": {},
+            "patientAddress": {},
+            "recordDate": {},
+            "recordTitle": {},
+            "doctorAddress": {},
+            "doctorName": {},
+            "recordAnamnesis": {},
+            "recordDiagnosis": {},
+            "recordTherapy": {},
+            "recordNotes": {},
+            "recordFiles": [
+              {
+                "fileId": {},
+                "fileName": {},
+                "fileDescription": {}
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
