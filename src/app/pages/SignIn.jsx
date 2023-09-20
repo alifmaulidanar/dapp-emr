@@ -1,4 +1,4 @@
-import { SignInForm } from "../components/Forms/Form";
+import SignInForm from "../components/Forms/SignInForm";
 
 function SignIn({ role, resetLink, signupLink }) {
   return (
