@@ -2,19 +2,16 @@
 pragma solidity ^0.8.21;
 
 contract MedicalRecords {
-    struct Account {
-        uint accountId;
+    struct Patient {
         string username;
         string email;
         string phone;
         string password;
-        Patient[] patients;
+        Profile[] profiles;
     }
 
-    uint private accountCounter = 1;
-
-    struct Patient {
-        uint patientId;
+    struct Profile {
+        address patientAddress;
         string patientIdNumber;
         string patientName;
         string patientBirthLocation;
@@ -34,6 +31,11 @@ contract MedicalRecords {
         string patientSubdistrict;
         string patientVillage;
         string patientPostalCode;
+        Relatives relatives;
+        Record[] records;
+    }
+
+    struct Relatives {
         string relativesName;
         string relativesIdNumber;
         string relativesGender;
@@ -49,7 +51,7 @@ contract MedicalRecords {
     }
 
     struct Record {
-        uint recordId;
+        address recordAddress;
         address patientAddress;
         string recordDate;
         string recordTitle;
@@ -63,46 +65,46 @@ contract MedicalRecords {
     }
 
     struct File {
-        uint fileId;
+        string fileId;
         string fileName;
         string fileDescription;
     }
 
-    mapping(address => Account) public accounts;
+    mapping(address => Patient) public patients;
 
-    event NewAccountRegistered(address indexed accountAddress, string email);
-    event NewPatientProfileAdded(
-        address indexed accountAddress,
+    event NewPatientRegistered(address indexed patientAddress, string username);
+    event NewProfileAdded(
+        address indexed patientAddress,
         uint indexed profileIndex,
-        string patientIdNumber
+        string patientName
     );
     event NewRecordAdded(
-        address indexed accountAddress,
+        address indexed patientAddress,
         uint indexed profileIndex,
         uint indexed recordIndex,
         string recordTitle
     );
 
-    function registerPatientAccount(
+    function registerPatient(
         string memory _username,
         string memory _email,
         string memory _phone,
         string memory _password
-    ) external {
+    ) public payable {
         require(
-            bytes(accounts[msg.sender].email).length == 0,
+            bytes(patients[msg.sender].username).length == 0,
             "Patient account already exists."
         );
 
-        accounts[msg.sender] = Account({
+        patients[msg.sender] = Patient({
             username: _username,
             email: _email,
             phone: _phone,
             password: _password,
-            patients: new Patient[](0)
+            profiles: new Profile[](0)
         });
 
-        emit NewAccountRegistered(msg.sender, _username);
+        emit NewPatientRegistered(msg.sender, _username);
     }
 
     function addProfile(
@@ -138,7 +140,7 @@ contract MedicalRecords {
         string memory _relativesSubdistrict,
         string memory _relativesVillage,
         string memory _relativesPostalCode
-    ) external {
+    ) public payable {
         require(
             bytes(patients[_patientAddress].username).length != 0,
             "Patient account does not exist."
